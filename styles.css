@@ -29,6 +29,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+    font-family: Roboto, Andale Mono, system-ui;
 	line-height: 1;
 }
 ol, ul {
@@ -45,4 +46,85 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+a {
+    color: inherit;
+}
+
+button {
+    font-family: Roboto, Andale Mono, system-ui;
+    font-size: 1.1rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    box-shadow: 3px 4px 0px 0px rgba(0,0,0,1);
+}
+
+a:hover {
+    color: gray;
+}
+
+a:hover,
+button:hover {
+    cursor: pointer;
+}
+
+button:active {
+    box-shadow: none;
+    margin: 3px -4px -3px 4px;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5rem;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #FFFFFF /*#ea00ff*/;
+    border-bottom: 2px solid black;
+}
+
+main {
+    background-color: #ffe078;
+    padding: 1rem;
+}
+
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #ffe078;
+    padding: 1rem;
+}
+
+footer a > i {
+    text-decoration: underline;
+}
+
+.sectionTitleContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+#newBookBtn {
+    background-color: #be81cc;
+}
+
+#newBookBtn:hover {
+    background-color: #9a69a5;
+}
+
+.bookList {
+    margin: 1rem 0rem;
 }

@@ -3,9 +3,48 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <link rel="stylesheet" type="text/css" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <script defer src="./script.js"></script>
+    <script
+      src="https://kit.fontawesome.com/dbafa2a695.js"
+      crossorigin="anonymous"
+    ></script>
+    
     <title>Odin Library</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <i class="fa-solid fa-book fa-2xl"></i>
+      <h1 id="siteTitle">Odin Library</h1>
+      <i class="fa-solid fa-book fa-2xl"></i>
+    </header>
+    <main>
+      <div class="librarySection"></div>
+        <div class="sectionTitleContainer">
+          <h2 id="libraryTitle">Your current library:</h2>
+        </div>
+        <dialog>
+          <button autofocus>Close</button>
+          <p>Hello</p>
+        </dialog>
+        <button id="newBookBtn">New Book</button>
+        <div class="bookList">
+          Book List
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>
+        Created by
+        <a href="https://github.com/AlexDeL8" target="_blank" rel="nofollow"
+          >Alex De Luca<i class="fa-brands fa-github"></i
+        ></a>
+      </p>
+    </footer>
+  </body>
 </html>
