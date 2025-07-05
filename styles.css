@@ -3,6 +3,16 @@
    License: none (public domain)
 */
 
+:root {
+    --border-shadow-color: #000000;
+    --section-background-color: #FFFFFF;
+    --main-background-color: #ffe693;
+    --primary-btn-color: #BE81CC;
+    --primary-btn-hover-color: #9A69A5;
+    --secondary-btn-color: #FFFFFF;
+    --secondary-btn-hover-color: #AAAAAA;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -48,6 +58,7 @@ table {
 	border-spacing: 0;
 }
 
+/* ------ GENERAL/TAGS ------ */
 a {
     color: inherit;
 }
@@ -56,12 +67,34 @@ button {
     font-family: Roboto, Andale Mono, system-ui;
     font-size: 1.1rem;
     padding: 0.5rem 1.25rem;
+    background-color: #D7D7D7;
+    border: 2px solid var(--border-shadow-color);
     border-radius: 2px;
     box-shadow: 3px 4px 0px 0px rgba(0,0,0,1);
 }
 
+.primaryBtn {
+    background-color: var(--primary-btn-color);
+}
+
+.secondaryBtn {
+    background-color: var(--secondary-btn-color);
+}
+
 a:hover {
-    color: gray;
+    color: var(--primary-btn-color);
+}
+
+button:hover {
+    background-color: var(--secondary-btn-hover-color);
+}
+
+.primaryBtn:hover {
+    background-color: var(--primary-btn-hover-color);
+}
+
+.secondaryBtn:hover {
+    background-color: var(--secondary-btn-hover-color);
 }
 
 a:hover,
@@ -83,31 +116,42 @@ h2 {
     font-size: 1.5rem;
 }
 
+input[type="text"], 
+input[type="number"] {
+    font-size: 1.1rem;
+    font-weight: lighter;
+    padding: 0.33rem 0.5rem;
+    border: 2px solid #000000;
+    border-radius: 2px;
+    box-shadow: 3px 4px 0px 0px rgba(0,0,0,1);
+}
+
+input[type="checkbox"] {
+    height: 1.25rem;
+    width: 1.25rem;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    box-shadow: 3px 4px 0px 0px rgba(190, 129, 204, 1);
+}
+
+/* ------ HEADER ------ */
 header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #FFFFFF /*#ea00ff*/;
-    border-bottom: 2px solid black;
+    background-color: var(--section-background-color) /*#ea00ff*/;
+    border-bottom: 2px solid var(--border-shadow-color);
 }
 
+/* ------ MAIN ------ */
 main {
-    background-color: #ffe078;
+    background-color: var(--main-background-color);
     padding: 1rem;
-}
-
-footer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: #ffe078;
-    padding: 1rem;
-}
-
-footer a > i {
-    text-decoration: underline;
 }
 
 .sectionTitleContainer {
@@ -117,14 +161,67 @@ footer a > i {
     margin-bottom: 1rem;
 }
 
-#newBookBtn {
-    background-color: #be81cc;
-}
-
-#newBookBtn:hover {
-    background-color: #9a69a5;
-}
-
 .bookList {
     margin: 1rem 0rem;
+}
+
+/* ------ MAIN > DIALOG------ */
+dialog {
+    height: 55%;
+    width: 40%;
+    border: 2px solid var(--border-shadow-color);
+    border-radius: 12px;
+    box-shadow: 3px 4px 0px 0px rgba(0,0,0,1);
+}
+
+.dialogHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.formControl {
+    display: flex;
+    flex-direction: column;
+    margin: 2px 0px;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.formControlInline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 2px 0px;
+    margin-bottom: 1rem;
+}
+
+.dialogContent label {
+    font-size: 1.33rem;
+}
+
+.formControl > input#pages {
+    width: max(75px, 20%);
+}
+
+#formButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    column-gap: 2rem;
+    margin-top: 2rem;
+}
+
+/* ------ FOOTER ------ */
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: var(--main-background-color);
+    padding: 1rem;
+}
+
+footer a > i {
+    text-decoration: underline;
 }
