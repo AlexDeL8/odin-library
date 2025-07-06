@@ -4,6 +4,7 @@ const myLibrary = [];
 const newBookBtn = document.getElementById("newBookBtn");
 const newBookDialog = document.getElementById("newBookDialog");
 const dialogCloseBtn = document.querySelectorAll(".dialogCloseBtn");
+const newBookForm = document.getElementById("newBookForm");
 
 // EVENT LISTENERS
 newBookBtn.addEventListener("click", () => {
@@ -14,6 +15,18 @@ dialogCloseBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
         newBookDialog.close()
     })
+})
+
+newBookForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const form = event.target
+    const newBookData = {
+        title: form.elements.bookTitle.value,
+        author: form.elements.author.value,
+        numOfPages: form.elements.pages.value,
+        hasRead: form.elements.hasRead.checked,
+    }
+    addBookToLibrary({...newBookData})
 })
 
 // LOGIC
@@ -32,6 +45,6 @@ Book.prototype.info = function() {
     return `${this.title} by ${this.author}, has ${this.numOfPages} pages. `;
 }
 
-function addBookToLibrary(title, author, numOfPages, hasRead = false) {
-    libraryBooks.push(new Book(title, author, numOfPages, hasRead));
+function addBookToLibrary({title, author, numOfPages, hasRead = false}) {
+    myLibrary.push(new Book(title, author, numOfPages, hasRead));
 }
