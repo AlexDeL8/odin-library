@@ -6,6 +6,8 @@ const newBookDialog = document.getElementById("newBookDialog");
 const dialogCloseBtn = document.querySelectorAll(".dialogCloseBtn");
 const newBookForm = document.getElementById("newBookForm");
 
+const myLibraryList = document.getElementById("myLibraryList")
+
 // EVENT LISTENERS
 newBookBtn.addEventListener("click", () => {
     newBookDialog.showModal()
@@ -47,4 +49,15 @@ Book.prototype.info = function() {
 
 function addBookToLibrary({title, author, numOfPages, hasRead = false}) {
     myLibrary.push(new Book(title, author, numOfPages, hasRead));
+    myLibraryList.innerHTML += `
+        <div class="bookCard">
+            <div class="bookCardHeader">
+                <h3 class="bookCardTitle">${title}</h3>
+                <button class="bookCardDeleteBtn">X</button>
+            </div>
+            <p class="bookCardAuthor">${author}</p>
+            <p class="bookCardPages">${numOfPages}</p>
+            <p class="bookCardHasRead">${hasRead ? 'Finished ✓' : 'Not Started/In Progress'}</p>
+        </div>
+    `;
 }

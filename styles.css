@@ -7,11 +7,16 @@
     --border-shadow-color: #000000;
     --section-background-color: #FFFFFF;
     --main-background-color: #ffe693;
+    --default-button-color: #D7D7D7;
     --primary-btn-color: #BE81CC;
     --primary-btn-hover-color: #9A69A5;
     --secondary-btn-color: #FFFFFF;
     --secondary-btn-hover-color: #AAAAAA;
     /* TODO: Soft teal and red could be options*/
+    --main-border-style: 2px solid var(--border-shadow-color);
+    --util-border-radius: 2px;
+    --section-border-radius: 12px;
+    --main-box-shadow: 3px 4px 0px 0px rgba(0,0,0,1);
 }
 
 html, body, div, span, applet, object, iframe,
@@ -68,10 +73,10 @@ button {
     font-family: Roboto, Andale Mono, system-ui;
     font-size: 1.1rem;
     padding: 0.5rem 1.25rem;
-    background-color: #D7D7D7;
-    border: 2px solid var(--border-shadow-color);
-    border-radius: 2px;
-    box-shadow: 3px 4px 0px 0px rgba(0,0,0,1);
+    background-color: var(--default-button-color);
+    border: var(--main-border-style);
+    border-radius: var(--util-border-radius);
+    box-shadow: var(--main-box-shadow);
 }
 
 .primaryBtn {
@@ -122,9 +127,9 @@ input[type="number"] {
     font-size: 1.1rem;
     font-weight: lighter;
     padding: 0.33rem 0.5rem;
-    border: 2px solid #000000;
-    border-radius: 2px;
-    box-shadow: 3px 4px 0px 0px rgba(0,0,0,1);
+    border: var(--main-border-style);
+    border-radius: var(--util-border-radius);
+    box-shadow: var(--main-box-shadow);
 }
 
 input[type="checkbox"] {
@@ -145,8 +150,8 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: var(--section-background-color) /*#ea00ff*/;
-    border-bottom: 2px solid var(--border-shadow-color);
+    background-color: var(--section-background-color);
+    border-bottom: var(--main-border-style);
 }
 
 /* ------ MAIN ------ */
@@ -170,9 +175,9 @@ main {
 dialog {
     height: 55%;
     width: 40%;
-    border: 2px solid var(--border-shadow-color);
-    border-radius: 12px;
-    box-shadow: 3px 4px 0px 0px rgba(0,0,0,1);
+    border: var(--main-border-style);
+    border-radius: var(--section-border-radius);
+    box-shadow: var(--main-box-shadow);
 }
 
 .dialogHeader {
@@ -212,6 +217,23 @@ dialog {
     justify-content: center;
     column-gap: 2rem;
     margin-top: 2rem;
+}
+
+.bookList {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 2.5rem;
+}
+
+.bookCard {
+    height: 250px; /* TODO: could change */
+    width: max(150px, 250px); /* TODO: could change */
+    background-color: var(--section-background-color);
+    border: var(--main-border-style);
+    border-radius: var(--util-border-radius);
+    box-shadow: var(--main-box-shadow);
 }
 
 /* ------ FOOTER ------ */
