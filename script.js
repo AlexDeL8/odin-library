@@ -1,4 +1,4 @@
-const myLibrary = [];
+let myLibrary = [];
 
 // ELEMENTS
 const newBookBtn = document.getElementById("newBookBtn");
@@ -6,29 +6,36 @@ const newBookDialog = document.getElementById("newBookDialog");
 const dialogCloseBtn = document.querySelectorAll(".dialogCloseBtn");
 const newBookForm = document.getElementById("newBookForm");
 
-const myLibraryList = document.getElementById("myLibraryList")
+const myLibraryList = document.getElementById("myLibraryList");
 
 // EVENT LISTENERS
 newBookBtn.addEventListener("click", () => {
-    newBookDialog.showModal()
+    newBookDialog.showModal();
 })
 
 dialogCloseBtn.forEach((btn) => {
     btn.addEventListener("click", () => {
-        newBookDialog.close()
+        newBookDialog.close();
     })
 })
 
 newBookForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const form = event.target
+    const form = event.target;
     const newBookData = {
         title: form.elements.bookTitle.value,
         author: form.elements.author.value,
         numOfPages: form.elements.pages.value,
         hasRead: form.elements.hasRead.checked,
-    }
-    addBookToLibrary({...newBookData})
+    };
+    addBookToLibrary({...newBookData});
+    
+    form.elements.bookTitle.value = '',
+    form.elements.author.value = '',
+    form.elements.pages.value = '',
+    form.elements.hasRead.checked = false,
+    
+    newBookDialog.close();
 })
 
 // LOGIC
@@ -47,17 +54,22 @@ Book.prototype.info = function() {
     return `${this.title} by ${this.author}, has ${this.numOfPages} pages. `;
 }
 
-function addBookToLibrary({title, author, numOfPages, hasRead = false}) {
-    myLibrary.push(new Book(title, author, numOfPages, hasRead));
-    myLibraryList.innerHTML += `
-        <div class="bookCard">
+function renderLibraryBooks() {
+    myLibraryList.innerHTML = myLibrary.map(book => `
+        <div id="book-${book.id}" class="bookCard">
             <div class="bookCardHeader">
-                <h3 class="bookCardTitle">${title}</h3>
+                <h3 class="bookCardTitle" data-title="${book.title}">${book.title}</h3>
                 <button class="bookCardDeleteBtn">X</button>
             </div>
-            <p class="bookCardAuthor">${author}</p>
-            <p class="bookCardPages">${numOfPages}</p>
-            <p class="bookCardHasRead">${hasRead ? 'Finished ✓' : 'Not Started/In Progress'}</p>
+            <p class="bookCardAuthor">by <span class="bookCardAuthorName" data-author="${book.author}">${book.author}</span></p>
+            <p class="bookCardPages" data-pages=${book.numOfPages}># of Pages: ${book.numOfPages.toLocaleString('en-US')}</p>
+            <p class="bookCardHasRead" data-has-read=${book.hasRead}>${book.hasRead ? 'Finished ✓' : 'Not Started/In Progress'}</p>
         </div>
-    `;
+      `).join('');
+}
+
+function addBookToLibrary({title, author, numOfPages, hasRead = false}) {
+    const newBook = new Book (title, author, numOfPages, hasRead);
+    myLibrary.push(newBook);
+    renderLibraryBooks();
 }

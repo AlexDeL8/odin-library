@@ -12,7 +12,8 @@
     --primary-btn-hover-color: #9A69A5;
     --secondary-btn-color: #FFFFFF;
     --secondary-btn-hover-color: #AAAAAA;
-    /* TODO: Soft teal and red could be options*/
+    --danger-color: #FE4A60;
+    /* TODO: Soft teal could be options*/
     --main-border-style: 2px solid var(--border-shadow-color);
     --util-border-radius: 2px;
     --section-border-radius: 12px;
@@ -122,6 +123,10 @@ h2 {
     font-size: 1.5rem;
 }
 
+h3 {
+    font-size: 1.1rem;
+}
+
 input[type="text"], 
 input[type="number"] {
     font-size: 1.1rem;
@@ -219,21 +224,60 @@ dialog {
     margin-top: 2rem;
 }
 
+/* ------ MAIN > BOOKLIST------ */
 .bookList {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     flex-wrap: wrap;
     column-gap: 2.5rem;
+    row-gap: 2.5rem;
 }
 
 .bookCard {
-    height: 250px; /* TODO: could change */
-    width: max(150px, 250px); /* TODO: could change */
+    height: 150px;
+    width: max(150px, 250px);
     background-color: var(--section-background-color);
     border: var(--main-border-style);
     border-radius: var(--util-border-radius);
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.bookCard:hover {
     box-shadow: var(--main-box-shadow);
+}
+
+.bookCardHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bookCardTitle {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.bookCardDeleteBtn {
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 0.15rem 0.30rem;
+}
+
+.bookCardDeleteBtn:hover {
+    background-color: var(--danger-color);;
+}
+
+.bookCardAuthorName {
+    font-style: italic;
+}
+
+.bookCardHasRead {
+    align-self: flex-end;
 }
 
 /* ------ FOOTER ------ */
