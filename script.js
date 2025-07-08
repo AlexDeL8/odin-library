@@ -23,8 +23,8 @@ newBookForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const form = event.target;
     const newBookData = {
-        title: form.elements.bookTitle.value,
-        author: form.elements.author.value,
+        title: form.elements.bookTitle.value.trim(),
+        author: form.elements.author.value.trim(),
         numOfPages: form.elements.pages.value,
         hasRead: form.elements.hasRead.checked,
     };
@@ -36,6 +36,15 @@ newBookForm.addEventListener("submit", (event) => {
     form.elements.hasRead.checked = false,
     
     newBookDialog.close();
+})
+
+myLibraryList.addEventListener("click", (event) => {
+    if(event.target.classList.contains("bookCardDeleteBtn")) {
+        const bookCard = event.target.closest(".bookCard")
+        const bookId = bookCard.id.substring(5)
+        myLibrary = myLibrary.filter(bookObj => bookObj.id !== bookId)
+        renderLibraryBooks()
+    }
 })
 
 // LOGIC
@@ -56,7 +65,7 @@ Book.prototype.info = function() {
 
 function renderLibraryBooks() {
     myLibraryList.innerHTML = myLibrary.map(book => `
-        <div id="book-${book.id}" class="bookCard">
+        <li id="book-${book.id}" class="bookCard">
             <div class="bookCardHeader">
                 <h3 class="bookCardTitle" data-title="${book.title}">${book.title}</h3>
                 <button class="bookCardDeleteBtn">X</button>
@@ -64,7 +73,7 @@ function renderLibraryBooks() {
             <p class="bookCardAuthor">by <span class="bookCardAuthorName" data-author="${book.author}">${book.author}</span></p>
             <p class="bookCardPages" data-pages=${book.numOfPages}># of Pages: ${book.numOfPages.toLocaleString('en-US')}</p>
             <p class="bookCardHasRead" data-has-read=${book.hasRead}>${book.hasRead ? 'Finished ✓' : 'Not Started/In Progress'}</p>
-        </div>
+        </li>
       `).join('');
 }
 
