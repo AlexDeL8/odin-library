@@ -13,7 +13,6 @@
     --secondary-btn-color: #FFFFFF;
     --secondary-btn-hover-color: #AAAAAA;
     --danger-color: #FE4A60;
-    /* TODO: Soft teal could be options*/
     --main-border-style: 2px solid var(--border-shadow-color);
     --util-border-radius: 2px;
     --section-border-radius: 12px;
@@ -278,6 +277,18 @@ dialog {
 
 .bookCardHasRead {
     align-self: flex-end;
+}
+
+.bookCardHasRead[data-has-read="true"] {
+    color: teal;
+}
+
+.bookCardHasRead[data-has-read="false"] {
+    color: gray;
+}
+
+.bookCardHasReadToggleBtn:hover {
+    cursor: pointer;
 }
 
 /* ------ FOOTER ------ */

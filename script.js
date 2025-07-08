@@ -30,21 +30,30 @@ newBookForm.addEventListener("submit", (event) => {
     };
     addBookToLibrary({...newBookData});
     
-    form.elements.bookTitle.value = '',
-    form.elements.author.value = '',
-    form.elements.pages.value = '',
-    form.elements.hasRead.checked = false,
+    form.elements.bookTitle.value = '';
+    form.elements.author.value = '';
+    form.elements.pages.value = '';
+    form.elements.hasRead.checked = false;
     
     newBookDialog.close();
 })
 
 myLibraryList.addEventListener("click", (event) => {
     if(event.target.classList.contains("bookCardDeleteBtn")) {
-        const bookCard = event.target.closest(".bookCard")
-        const bookId = bookCard.id.substring(5)
-        myLibrary = myLibrary.filter(bookObj => bookObj.id !== bookId)
-        renderLibraryBooks()
+        const bookCard = event.target.closest(".bookCard");
+        const bookId = bookCard.id.substring(5);
+        myLibrary = myLibrary.filter(bookObj => bookObj.id !== bookId);
+    } else if(event.target.classList.contains("bookCardHasReadToggleBtn")) {
+        const bookCard = event.target.closest(".bookCard");
+        const bookId = bookCard.id.substring(5);
+        for(let bookObj of myLibrary) {
+            if(bookObj.id === bookId) {
+                bookObj.hasRead = !bookObj.hasRead
+                break;
+            }
+        }
     }
+    renderLibraryBooks();
 })
 
 // LOGIC
@@ -72,7 +81,7 @@ function renderLibraryBooks() {
             </div>
             <p class="bookCardAuthor">by <span class="bookCardAuthorName" data-author="${book.author}">${book.author}</span></p>
             <p class="bookCardPages" data-pages=${book.numOfPages}># of Pages: ${book.numOfPages.toLocaleString('en-US')}</p>
-            <p class="bookCardHasRead" data-has-read=${book.hasRead}>${book.hasRead ? 'Finished ✓' : 'Not Started/In Progress'}</p>
+            <p class="bookCardHasRead" data-has-read=${book.hasRead}>${book.hasRead ? 'Finished <i class="bookCardHasReadToggleBtn fa-solid fa-book"></i>' : 'Not Started/In Prog. <i class="bookCardHasReadToggleBtn fa-solid fa-book-open"></i>'}</p>
         </li>
       `).join('');
 }
