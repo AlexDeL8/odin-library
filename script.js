@@ -23,8 +23,8 @@ newBookForm.addEventListener("submit", (event) => {
     event.preventDefault();
     const form = event.target;
     const newBookData = {
-        title: form.elements.bookTitle.value,
-        author: form.elements.author.value,
+        title: form.elements.bookTitle.value.trim(),
+        author: form.elements.author.value.trim(),
         numOfPages: form.elements.pages.value,
         hasRead: form.elements.hasRead.checked,
     };
@@ -38,22 +38,14 @@ newBookForm.addEventListener("submit", (event) => {
     newBookDialog.close();
 })
 
-// const bookCards = document.querySelectorAll(`.bookCard`);
-// bookCards.forEach(card => {
-//     card.addEventListener("click", (event) => {
-//         if(event.target.classList.contains("bookCardDeleteBtn")) {
-//             const bookId = card.id.substring(5)
-//             myLibrary = myLibrary.filter(bookObj => {
-//                 console.log(bookId)
-//                 console.log(bookObj.id)
-//                 console.log(bookObj.id === bookId)
-//                 bookObj.id === bookId
-//             })
-//             console.log(myLibrary)
-//             renderLibraryBooks();
-//         }
-//     })
-// })
+myLibraryList.addEventListener("click", (event) => {
+    if(event.target.classList.contains("bookCardDeleteBtn")) {
+        const bookCard = event.target.closest(".bookCard")
+        const bookId = bookCard.id.substring(5)
+        myLibrary = myLibrary.filter(bookObj => bookObj.id !== bookId)
+        renderLibraryBooks()
+    }
+})
 
 // LOGIC
 function Book(title, author, numOfPages, hasRead = false) {
