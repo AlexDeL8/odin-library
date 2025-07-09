@@ -2,16 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-/* 
-TODO: 
-- Elongate yellow background
-- See what header opposite color looks like
-- Ease-in/out transitions
-  - Card hover
-  - Has Read toggle
-  - Dialog box?
-  - Add/Delete card?
- */
+
 :root {
     --border-shadow-color: #000000;
     --section-background-color: #FFFFFF;
@@ -169,8 +160,9 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: var(--section-background-color);
-    border-bottom: var(--main-border-style);
+    color: white;
+    background-color: black;
+    border-bottom: 4px solid var(--primary-btn-color);
 }
 
 /* ------ MAIN ------ */
@@ -250,6 +242,7 @@ dialog {
 }
 
 .bookCard {
+    animation: border-shrink 0.5s;
     height: 150px;
     width: max(150px, 250px);
     background-color: var(--section-background-color);
@@ -260,8 +253,28 @@ dialog {
     flex-direction: column;
     justify-content: space-around;
 }
+@keyframes border-shrink {
+    from {
+        box-shadow: var(--main-box-shadow);
+    }
+    
+    to {
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+    }
+}
+
+@keyframes border-grow {
+    from {
+        box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+    }
+    
+    to {
+        box-shadow: var(--main-box-shadow);
+    }
+}
 
 .bookCard:hover {
+    animation: border-grow 0.5s;
     box-shadow: var(--main-box-shadow);
 }
 
@@ -319,4 +332,12 @@ footer {
 
 footer a > i {
     text-decoration: underline;
+}
+
+@media(max-width: 601px) {
+    
+    dialog {   
+        height: 65%;
+        width: 65%;
+    }
 }
