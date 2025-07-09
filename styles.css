@@ -2,7 +2,16 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
+/* 
+TODO: 
+- Elongate yellow background
+- See what header opposite color looks like
+- Ease-in/out transitions
+  - Card hover
+  - Has Read toggle
+  - Dialog box?
+  - Add/Delete card?
+ */
 :root {
     --border-shadow-color: #000000;
     --section-background-color: #FFFFFF;
@@ -47,6 +56,10 @@ footer, header, hgroup, menu, nav, section {
 body {
     font-family: Roboto, Andale Mono, system-ui;
 	line-height: 1;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+
 }
 ol, ul {
 	list-style: none;
@@ -149,6 +162,8 @@ input[type="number"]:focus {
 
 /* ------ HEADER ------ */
 header {
+    height: 35px;
+    height: 1.5rem;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -160,6 +175,7 @@ header {
 
 /* ------ MAIN ------ */
 main {
+    flex-grow: 1;
     background-color: var(--main-background-color);
     padding: 1rem;
 }
@@ -293,6 +309,7 @@ dialog {
 
 /* ------ FOOTER ------ */
 footer {
+    height: 35px;
     display: flex;
     flex-direction: row;
     justify-content: center;
